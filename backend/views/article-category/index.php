@@ -1,5 +1,5 @@
 <a href="<?=\yii\helpers\Url::to(['article-category/add'])?>" class="btn btn-info">添加</a>
-<table class="table table-bordered">
+<table class="table table-responsive">
     <tr>
         <th>id</th>
         <th>名称</th>
@@ -18,6 +18,7 @@
         <td>
             <a href="<?=\yii\helpers\Url::to(['article-category/edit','id'=>$value->id])?>">修改</a>
             <a href="<?=\yii\helpers\Url::to(['article-category/delete','id'=>$value->id])?>">删除</a>
+            <a href="<?=\yii\helpers\Url::to(['article/index','id'=>$value->id])?>">进入</a>
         </td>
     </tr>
     <?php endforeach;?>

@@ -2,7 +2,7 @@
 
 namespace backend\controllers;
 
-use app\models\ArticleCategory;
+use backend\models\ArticleCategory;
 
 class ArticleCategoryController extends \yii\web\Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 
@@ -17,7 +17,6 @@ use Yii;
  */
 class Article extends \yii\db\ActiveRecord
 {
-    public $content;
     /**
      * @inheritdoc
      */
@@ -32,7 +31,7 @@ class Article extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'article_category_id', 'sort','content'], 'required'],
+            [['name', 'article_category_id', 'sort'], 'required'],
             [['intro'], 'string'],
             [['article_category_id', 'sort', 'is_deleted', 'create_time'], 'integer'],
             [['name'], 'string', 'max' => 50],
@@ -52,12 +51,11 @@ class Article extends \yii\db\ActiveRecord
             'sort' => '排序',
             'is_deleted' => '状态',
             'create_time' => '创建时间',
-            'content'=>'文章内容'
         ];
     }
     //得到文章分类表
     public static function getArticleCategoryName(){
-        $articleCategorys = ArticleCategory::find()->all();
+        $articleCategorys = ArticleCategory::find()->where(['is_deleted'=>0])->all();
         $articleCategoryNames = [];
         foreach ($articleCategorys as $articleCategory){
             $articleCategoryNames[$articleCategory->id] = $articleCategory->name;

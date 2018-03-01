@@ -14,7 +14,7 @@
     <tr>
         <td><?=$value->id?></td>
         <td><?=$value->name?></td>
-        <td><?=$value->intro?></td>
+        <td><?=substr($value->intro,0,100).'...'?></td>
         <td><?=$value->articleCategory->name?></td>
         <td><?=$value->sort?></td>
         <td><?=$value->is_deleted==0?"正常":"删除"?></td>

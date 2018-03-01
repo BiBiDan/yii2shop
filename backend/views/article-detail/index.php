@@ -1,9 +1,10 @@
-<?php
-/* @var $this yii\web\View */
-?>
-<h1>article-detail/index</h1>
-
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+<table class="table table-responsive">
+    <tr>
+        <th style="text-align: center">文章内容</th>
+    </tr>
+    <?php foreach ($model as $value):?>
+    <tr>
+        <td><?=$value->content?></td>
+    </tr>
+    <?php endforeach;?>
+</table>

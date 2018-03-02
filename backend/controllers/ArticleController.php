@@ -21,7 +21,7 @@ class ArticleController extends \yii\web\Controller
             $model->load($request->post());
             $articleDetail->load($request->post());
             $model->create_time = time();
-            if($model->validate()){
+            if($model->validate() && $articleDetail->validate()){
                 $articleDetail->save();
                 $model->save();
                 \Yii::$app->session->setFlash('success','添加成功');
@@ -38,9 +38,7 @@ class ArticleController extends \yii\web\Controller
             'upload' => [
                 'class' => 'kucha\ueditor\UEditorAction',
                 'config' => [
-                    "imageUrlPrefix"  => "http://www.baidu.com",//图片访问路径前缀
-                    "imagePathFormat" => "/upload/article/{yyyy}{mm}{dd}/{time}{rand:6}", //上传保存路径
-                    "imageRoot" => \Yii::getAlias("@webroot")
+                    "imageUrlPrefix"  => "http://admin.yii2shop.cn",//图片访问路径前缀
             ]
         ]
     ];
@@ -53,7 +51,7 @@ class ArticleController extends \yii\web\Controller
             $model->load($request->post());
             $articleDetail->load($request->post());
             $model->create_time = time();
-            if($model->validate()){
+            if($model->validate() && $articleDetail->validate()){
                 $articleDetail->save();
                 $model->save();
                 \Yii::$app->session->setFlash('success','添加成功');

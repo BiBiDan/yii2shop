@@ -13,8 +13,8 @@ echo $form->field($model,'logo')->hiddenInput();
 /**
  * @var $this \yii\web\View
  */
-echo $this->registerCssFile('/webuploader-0.1.5/webuploader.css');
-echo $this->registerJsFile('/webuploader-0.1.5/webuploader.js',[
+$this->registerCssFile('/webuploader-0.1.5/webuploader.css');
+$this->registerJsFile('/webuploader-0.1.5/webuploader.js',[
     //解决依赖
     'depends'=>\yii\web\JqueryAsset::className()
 ]);
@@ -61,6 +61,9 @@ uploader.on( 'uploadSuccess', function( file , response ) {
     //图片回显
     $('#logo_img').attr('src',imgurl);
 });
+//修改条件下回显图片
+var img = $('#brand-logo').val();
+$('#logo_img').attr('src',img)
 JS
 );
 echo '<img id="logo_img">';

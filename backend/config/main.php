@@ -21,9 +21,13 @@ return [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            //设置用户的主键
+            'class'=>'\yii\web\User',
+            'identityClass' => 'backend\models\Admin',
             'enableAutoLogin' => true,
+            'loginUrl'=> ['admin/login'],
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            'authTimeout' => 3600,
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend

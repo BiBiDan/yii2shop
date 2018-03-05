@@ -32,7 +32,7 @@ class GoodsController extends \yii\web\Controller
             $pager = new Pagination();
             $pager->defaultPageSize = 5;
             $pager->totalCount = $query->count();
-            $model = $query->offset($pager->offset)->limit($pager->defaultPageSize)->asArray()->all();
+            $model = $query->offset($pager->offset)->limit($pager->limit)->asArray()->all();
 
 //            echo '<pre>';
 //            var_dump($model);die;
@@ -46,7 +46,7 @@ class GoodsController extends \yii\web\Controller
         $pager = new Pagination();
         $pager->defaultPageSize = 5;
         $pager->totalCount = $query->count();
-        $model = $query->offset($pager->offset)->limit($pager->defaultPageSize)->all();
+        $model = $query->offset($pager->offset)->limit($pager->limit)->all();
         return $this->render('index',['model'=>$model,'pager'=>$pager]);
     }
     public function actionAdd(){

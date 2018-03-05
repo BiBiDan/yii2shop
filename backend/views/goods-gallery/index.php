@@ -38,7 +38,7 @@ var uploader = WebUploader.create({
         //支持多文件上传
         $.post('{$url_upload_pic}',response,function(v) {
           //支持多文件回显 自动生成html文件
-          var html = "<tr><td><img src='"+v.url+"' width='100px'><a href='goods-gallery/delete?id="+v.id+"' class='btn btn-info'>删除</a></td></tr>";
+          var html = "<tr><td><img src='"+v.url+"' width='100px'><a href='/goods-gallery/delete.html?id="+v.id+"' class='btn btn-info'>删除</a></td></tr>";
           $('#ajaxpic').append(html);
         },'json')
     });

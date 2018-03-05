@@ -104,7 +104,7 @@
           var   day=date.getDate();    
           var create_time = year+"-"+month+"-"+day;
                     
-                    html += "<tr><td>"+v.id+"</td><td>"+v.name+"</td><td>"+v.sn+"</td><td><img src='"+v.logo+"' width='50px'></td><td>"+value.category[v.goods_category_id]+"</td><td>"+value.brand[v.brand_id]+"</td><td>"+v.market_price+"</td><td>"+v.shop_price+"</td><td>"+v.stock+"</td><td>"+is_on_sale+"</td><td>"+v.sort+"</td><td>"+create_time+"</td><td>"+v.view_times+"</td><td><a href='goods-gallery/index.html?id="+v.id+"'>相册</a>  <a href='edit.html?id="+v.id+"'>修改</a>   <a href='delete.html?id="+v.id+"'>回收站</a></td></tr>";
+                    html += "<tr><td>"+v.id+"</td><td>"+v.name+"</td><td>"+v.sn+"</td><td><img src='"+v.logo+"' width='50px'></td><td>"+value.category[v.goods_category_id]+"</td><td>"+value.brand[v.brand_id]+"</td><td>"+v.market_price+"</td><td>"+v.shop_price+"</td><td>"+v.stock+"</td><td>"+is_on_sale+"</td><td>"+v.sort+"</td><td>"+create_time+"</td><td>"+v.view_times+"</td><td><a href='/goods-gallery/index.html?id="+v.id+"'>相册</a>  <a href='edit.html?id="+v.id+"'>修改</a>   <a href='delete.html?id="+v.id+"'>回收站</a></td></tr>";
                     //console.log(html);
                   $('#content').html(html);
                 });

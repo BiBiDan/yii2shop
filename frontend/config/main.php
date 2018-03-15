@@ -7,17 +7,24 @@ $params = array_merge(
 );
 
 return [
+    //设置中文
+    'language'=>'zh-CN',
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    //关闭layout
+    'layout'=>false,
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            //设置用户的主键
+            'class'=>'\yii\web\User',
+            'identityClass' => 'frontend\models\Member',
             'enableAutoLogin' => true,
+            'loginUrl'=> ['member/login'],
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
         'session' => [
@@ -36,14 +43,22 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'suffix'=>'.html',
             'rules' => [
             ],
         ],
-        */
+        'msm' => [
+            'class'=> 'frontend\aliyun\SmsHandler',
+            'ak'=>'LTAIfdRnJs5DQDDX',
+            'sk'=>'adNW5AtGWaMqvrwsYDDGBxLxXHsiKs',
+            'sign'=>'爱豆乐宠',
+            'template'=>'SMS_126890009'
+        ]
+
     ],
     'params' => $params,
 ];

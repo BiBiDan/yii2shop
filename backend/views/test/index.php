@@ -1,36 +1,37 @@
-<a href="#" data-href="delete.php?id=23" data-toggle="modal" data-target="#confirm-delete">删除记录 #23</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>开始使用layui</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+</head>
+<body>
 
-<button class="btn btn-default" data-href="/delete.php?id=54" data-toggle="modal" data-target="#confirm-delete">
-    删除记录 #54
-</button>
+<!-- 你的HTML代码 -->
 
-#confirm-delete指向HTML中的模式框(modal)代码，例如：
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                请确认
-            </div>
-            <div class="modal-body">
-                确认删除该记录吗？
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <a class="btn btn-danger btn-ok">删除记录</a>
-            </div>
-        </div>
-    </div>
-</div>
+<script src="../layui/layui.js"></script>
+<script>
+    //一般直接写在一个js文件中
+    layui.use(['layer', 'form'], function(){
+        var layer = layui.layer
+            ,form = layui.form;
+
+        layer.msg('Hello World');
+    });
+</script>
+</body>
+</html>
 <?php
 /**
  * @var $this \yii\web\View
  */
+$this->registerCssFile('@web/layui-master/dist/css/layui.css');
+$this->registerJsFile('@web/layui-master/dist/lay/modules/layer.js',[
+    'depends'=>\yii\web\JqueryAsset::className()
+]);
 $this->registerJs(
     <<<JS
-function delcfm(url) {  
-$('#confirm-delete').on('show.bs.modal', function(e) {
-$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-});
-}  
+ 
 JS
 );

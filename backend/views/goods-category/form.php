@@ -1,7 +1,7 @@
 <?php
 $form = \yii\bootstrap\ActiveForm::begin();
 echo $form->field($model,'name')->textInput();
-echo $form->field($model,'parent_id')->textInput();
+echo $form->field($model,'parent_id')->hiddenInput();
 /**********************************************************************************************/
 /**
  * @var $this \yii\web\View

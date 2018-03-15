@@ -51,8 +51,8 @@ class LoginForm extends Model
                 $admin->last_login_time = time();
                 $admin->last_login_ip = ip2long(\Yii::$app->request->userIP);
                 //var_dump(\Yii::$app->user->isGuest);die;
-                $admin->save();
-                if($this->remember){
+                $admin->save(0);
+/*                if($this->remember){
                     //如果用户勾选了remember 保存信息到cookie
                     $cookie = \Yii::$app->response->cookies;//可读写的cookie组件添加cookie信息
                     $cookies = new Cookie();//实例化cookie
@@ -68,15 +68,16 @@ class LoginForm extends Model
                     $cookiess->expire = time()+(60*60*24);
                     $cookiess->path = '/';
                     $cookie->add($cookiess);
-                }
+                }*/
                 //var_dump($cookie);die;
                 //把用户信息保存进session
-                return  \Yii::$app->user->login($admin);
+                $duration = $this->remember?7*24*3600:0;
+                return  \Yii::$app->user->login($admin,$duration);
             }else{
-
+                $this->addError('password','密码不对');
             }
         }else{
-            $this->addError('password','用户名或密码错误');
+            $this->addError('username','用户名或密码错误');
         }
     }
 }

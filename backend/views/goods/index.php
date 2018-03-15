@@ -58,6 +58,7 @@
             <a href="<?=\yii\helpers\Url::to(['goods-gallery/index','id'=>$value->id])?>">相册</a>
             <a href="<?=\yii\helpers\Url::to(['goods/edit','id'=>$value->id])?>">修改</a>
             <a href="<?=\yii\helpers\Url::to(['goods/delete','id'=>$value->id])?>">回收站</a>
+            <a href="<?=\yii\helpers\Url::to(['goods-intro/index','id'=>$value->id])?>">预览</a>
         </td>
     </tr>
     <?php endforeach;?>

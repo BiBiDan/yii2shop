@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\filters\RbacFilter;
 use backend\models\Goods;
 use backend\models\GoodsCategory;
 use backend\models\GoodsDayCount;
@@ -44,7 +45,7 @@ class GoodsController extends \yii\web\Controller
     {
         $query = Goods::find()->where(['status'=>0]);
         $pager = new Pagination();
-        $pager->defaultPageSize = 5;
+        $pager->defaultPageSize = 10;
         $pager->totalCount = $query->count();
         $model = $query->offset($pager->offset)->limit($pager->limit)->all();
         return $this->render('index',['model'=>$model,'pager'=>$pager]);
@@ -164,4 +165,12 @@ class GoodsController extends \yii\web\Controller
         $num=str_pad($num,5,"0",STR_PAD_LEFT);
         echo $num;
 }
+    public function behaviors()
+    {
+        return [
+            'rbac'=>[
+                'class'=>RbacFilter::class,
+            ]
+        ];
+    }
 }

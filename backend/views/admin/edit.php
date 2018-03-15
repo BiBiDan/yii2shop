@@ -1,7 +1,7 @@
 
 <?php
 $form = \yii\bootstrap\ActiveForm::begin();
-echo $form->field($admin,'username')->textInput(['readonly'=>true]);
+echo $form->field($model,'username')->textInput(['readonly'=>true]);
 echo $form->field($model,'oldPwd')->passwordInput();
 echo $form->field($model,'newPwd')->passwordInput();
 echo $form->field($model,'rePwd')->passwordInput();

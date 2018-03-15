@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\filters\RbacFilter;
 use backend\models\Brand;
 use yii\web\UploadedFile;
 // 引入鉴权类
@@ -106,5 +107,13 @@ class BrandController extends \yii\web\Controller
                 return json_encode(['url'=>"http://p4t192xf8.bkt.clouddn.com/{$file}"]);
             }
         }
+    }
+    public function behaviors()
+    {
+        return [
+            'rbac'=>[
+                'class'=>RbacFilter::class,
+            ]
+        ];
     }
 }

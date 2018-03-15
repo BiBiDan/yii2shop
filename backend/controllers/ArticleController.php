@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\filters\RbacFilter;
 use backend\models\Article;
 use backend\models\ArticleDetail;
 
@@ -68,5 +69,13 @@ class ArticleController extends \yii\web\Controller
         $model->save();
         \Yii::$app->session->setFlash('success','删除成功');
         return $this->redirect(['article/index']);
+    }
+    public function behaviors()
+    {
+        return [
+            'rbac'=>[
+                'class'=>RbacFilter::class,
+            ]
+        ];
     }
 }

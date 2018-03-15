@@ -30,26 +30,26 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         'brandLabel' => '后台页面',
-        'brandUrl' => \yii\helpers\Url::to(['admin/index']),
+        'brandUrl' => \yii\helpers\Url::to(['admin/admin']),
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => '个人信息', 'url' => \yii\helpers\Url::to(['admin/edit-pwd','id'=>Yii::$app->user->id])],
-    ];
+
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => '登录', 'url' => ['/admin/login']];
     } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/admin/logout'], 'post')
-            . Html::submitButton(
-                '注销 (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
+        $menuItems = \backend\models\Mune::showMune();
+        $menuItems[] = [
+                'label'=>'用户(' . Yii::$app->user->identity->username . ')',
+            'items'=>[
+                    ['label'=>'修改密码','url'=>\yii\helpers\Url::to(['admin/edit-pwd'])],
+                ['label'=>'退出登录','url'=>\yii\helpers\Url::to(['admin/logout'])]
+            ]
+        ];
+
     }
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,

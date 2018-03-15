@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\filters\RbacFilter;
 use backend\models\GoodsGallery;
 use yii\web\UploadedFile;
 
@@ -13,8 +14,6 @@ class GoodsGalleryController extends \yii\web\Controller
             $model = GoodsGallery::find()->where(['goods_id'=>$id])->all();
             //var_dump($model);die;
             return $this->render('index',['model'=>$model]);
-
-
     }
     public function actionUploadPic(){
         $upload = UploadedFile::getInstanceByName('file');
@@ -41,5 +40,13 @@ class GoodsGalleryController extends \yii\web\Controller
         $model->delete();
         \Yii::$app->session->setFlash('success','删除成功');
         return $this->redirect(['goods-gallery/index','id'=>$model->goods_id]);
+    }
+    public function behaviors()
+    {
+        return [
+            'rbac'=>[
+                'class'=>RbacFilter::class,
+            ]
+        ];
     }
 }

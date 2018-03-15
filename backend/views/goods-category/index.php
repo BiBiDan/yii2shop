@@ -15,7 +15,7 @@
         <td>
             <?php if($value->depth>=0){
                 for($i=1;$i<=$value->depth;$i++){
-                    echo '--';
+                    echo '——';
                 }
                 echo $value->name;
             }?>

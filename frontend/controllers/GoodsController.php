@@ -22,6 +22,7 @@ use frontend\models\Payment;
 use yii\db\Exception;
 use yii\web\Controller;
 use yii\web\Cookie;
+use yii\web\View;
 
 class GoodsController extends Controller
 {
@@ -229,6 +230,9 @@ class GoodsController extends Controller
                 $order->save();
                 //找出该用户的所有购物车
                 $carts = Cart::find()->where(['member'=>\Yii::$app->user->id])->all();
+                if(!$carts){
+                    throw new Exception('没有商品');
+                }
                 foreach ($carts as $cart){
                     $good = Goods::findOne(['id'=>$cart->goods_id]);
                     if($good->stock < $cart->amount){
@@ -256,8 +260,16 @@ class GoodsController extends Controller
                 $transaction->commit();
             }catch (Exception $e){
                 $transaction->rollBack();
+                echo  $e;die;
+
             }
             return $this->render('success');
         }
+        //查看用户的订单
+    public function actionShowOrder(){
+        $member_id = \Yii::$app->user->id;
+        $orders = Order::find()->where(['member_id'=>$member_id])->all();
+        return $this->render('show-order',['orders'=>$orders]);
+    }
 
 }

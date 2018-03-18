@@ -570,12 +570,12 @@
                         <ul>
                             <li>
                                 <a class="zoomThumbActive" href="javascript:void(0);"
-                                   rel="{gallery: 'gal1', smallimage: '<?=$good->logo?>',largeimage: 'http://admin.yii2shop.cn<?=$good->logo?>'}"><img src="<?=$good->logo?>"></a>
+                                   rel="{gallery: 'gal1', smallimage: '<?=$good->logo?>',largeimage: 'http://yladmin.yjsama.top<?=$good->logo?>'}"><img src="<?=$good->logo?>"></a>
                             </li>
                             <?php foreach ($gallery as $img): ?>
                                 <li>
                                     <a href="javascript:void(0);"
-                                       rel="{gallery: 'gal1', smallimage: 'http://admin.yii2shop.cn<?= $img->path?>',largeimage: 'http://admin.yii2shop.cn<?= $img->path?>'}"><img src="http://admin.yii2shop.cn<?= $img->path?>"></a>
+                                       rel="{gallery: 'gal1', smallimage: 'http://yladmin.yjsama.top<?= $img->path?>',largeimage: 'http://yladmin.yjsama.top<?= $img->path?>'}"><img src="http://yladmin.yjsama.top<?= $img->path?>"></a>
                                 </li>
                             <?php endforeach; ?>
                         </ul>

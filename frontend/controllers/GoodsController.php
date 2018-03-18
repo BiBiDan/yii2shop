@@ -19,13 +19,14 @@ use frontend\models\Dress;
 use frontend\models\Order;
 use frontend\models\OrderGoods;
 use frontend\models\Payment;
+use frontend\models\SphinxClient;
 use yii\db\Exception;
 use yii\web\Controller;
 use yii\web\Cookie;
-use yii\web\View;
 
 class GoodsController extends Controller
 {
+    public $enableCsrfValidation = false;
     //用户登陆跳转后页面
     public function actionIndex(){
         $model = GoodsCategory::find()->where(['parent_id'=>0])->all();
@@ -270,6 +271,37 @@ class GoodsController extends Controller
         $member_id = \Yii::$app->user->id;
         $orders = Order::find()->where(['member_id'=>$member_id])->all();
         return $this->render('show-order',['orders'=>$orders]);
+    }
+    //搜索商品
+    public function actionSearch($info){
+        //var_dump($info);die;
+        $cl = new SphinxClient();
+        $cl->SetServer ( '127.0.0.1', 9312);
+//$cl->SetServer ( '10.6.0.6', 9312);
+//$cl->SetServer ( '10.6.0.22', 9312);
+//$cl->SetServer ( '10.8.8.2', 9312);
+        $cl->SetConnectTimeout ( 10 );
+        $cl->SetArrayResult ( true );
+// $cl->SetMatchMode ( SPH_MATCH_ANY);
+        $cl->SetMatchMode ( SPH_MATCH_EXTENDED2);
+        $cl->SetLimits(0, 1000);
+
+        $res = $cl->Query($info, 'goods');//shopstore_search
+        //print_r($res['matches']);die;
+//print_r($cl);
+
+        if(isset($res['matches'])){
+            $ids = [];
+            foreach ($res['matches'] as $r){
+                $ids[] = $r['id'];
+            }
+        }
+        if(isset($ids)){
+            $model = Goods::find()->where(['in','id',$ids])->all();
+        }else{
+            $model = [];
+        }
+            return $this->render('list',['model'=>$model]);
     }
 
 }
